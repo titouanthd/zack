@@ -98,6 +98,7 @@ class Scraper:
         elements = soup.find_all(tag_name)
         return elements
 
+    # method to get a single element
     def get_element(self, selector):
         # print("Getting element")
         html = self.fetch_page()
@@ -105,6 +106,7 @@ class Scraper:
         element = soup.select_one(selector)
         return element
 
+    # method to get a list of elements
     def get_elements(self, selector):
         # print("Getting elements")
         html = self.fetch_page()
