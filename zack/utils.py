@@ -1,6 +1,7 @@
 import re
 import uuid
 import os
+import requests
 
 def clean_text(text):
     # Clean up the text by removing unwanted characters and extra spaces
@@ -12,7 +13,6 @@ def save_data_to_text_file(data, filename, folder="files") -> str:
     # check if folder exists if not return error
     if not os.path.exists(folder):
         raise Exception("Folder does not exist")
-
 
     filename = sanitize_filename(filename)
     # Save the data to a text file
@@ -36,12 +36,45 @@ def sanitize_filename(filename):
     filename = "{}_{}".format(filename, unique_suffix)
     return filename
 
+def url_is_valid(url: str)->bool:
+    # check is not empty
+    if url == "":
+        return False
+    # check if url contains a space
+    if ' ' in url:
+        return False
+    return True
+
+def download_images(domain, image_urls, output_directory):
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+
+    for url in image_urls:
+        # validate the url
+        if not url_is_valid(url):
+            print(f"Invalid url: {url}")
+            continue
+
+        # check if url starts with http or https
+        if not url.startswith('http'):
+            url = "{}{}".format(domain, url)
+
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            filename = url.split('/')[-1]
+            filepath = os.path.join(output_directory, filename)
+            with open(filepath, 'wb') as f:
+                f.write(response.content)
+            print(f"Image downloaded: {filename}")
+        else:
+            print(f"Failed to download image from {url}")
+
+
 class Logger:
     def __init__(self, log_file='logs/messages.log'):
         self.log_file = log_file
 
     def log(self, message):
-        # Log messages to a log file for tracking and debugging purposes
-        # Example:
         with open(self.log_file, 'a') as file:
             file.write(message + '\n')

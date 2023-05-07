@@ -42,6 +42,12 @@ class TestCore(unittest.TestCase):
         data = scraper.get_head()
         self.assertIsNotNone(data)
 
+    def test_get_meta_description(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_meta_description()
+        self.assertIsNotNone(data)
+
     # Add more tests as needed
 
 
