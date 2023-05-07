@@ -4,10 +4,16 @@ Zack is a Python package for web scraping. It provides a simple and intuitive wa
 
 ## Installation
 
+Clone the repository to your local machine:
+
+```
+git clone git@github.com:titouanthd/zack.git
+```
+
 Use pip to install the package:
 
 ```
-pip install zack
+pip install .
 ```
 
 ## Usage
