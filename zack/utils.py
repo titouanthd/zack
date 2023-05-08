@@ -36,7 +36,8 @@ def url_is_valid(url: str)->bool:
 def save_data_to_text_file(data, filename, folder="datas/files") -> str:
     # check if folder exists if not return error
     if not os.path.exists(folder):
-        raise Exception("Folder does not exist")
+        # create the folder
+        os.makedirs(folder)
 
     filename = sanitize_filename(filename)
     # Save the data to a text file
