@@ -48,6 +48,42 @@ class TestCore(unittest.TestCase):
         data = scraper.get_meta_description()
         self.assertIsNotNone(data)
 
+    def test_get_images_url(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_images_url()
+        self.assertIsNotNone(data)
+
+    def test_get_elements_by_class(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_elements_by_class("navbar")
+        self.assertIsNotNone(data)
+
+    def test_get_element_by_id(self):
+        url = "https://www.yeswehack.com/fr/entreprises/pourquoi-le-bug-bounty/"
+        scraper = Scraper(url)
+        data = scraper.get_element_by_id("main")
+        self.assertIsNotNone(data)
+
+    def test_get_elements_by_tag(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_elements_by_tag("img")
+        self.assertIsNotNone(data)
+
+    def test_get_elements(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_elements("img")
+        self.assertIsNotNone(data)
+
+    def test_get_element(self):
+        url = "https://siclem.fr"
+        scraper = Scraper(url)
+        data = scraper.get_element("img")
+        self.assertIsNotNone(data)
+
     # Add more tests as needed
 
 

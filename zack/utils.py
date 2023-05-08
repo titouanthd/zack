@@ -9,18 +9,6 @@ def clean_text(text):
     clean_text = re.sub('<.*?>', '', clean_text)
     return clean_text
 
-def save_data_to_text_file(data, filename, folder="files") -> str:
-    # check if folder exists if not return error
-    if not os.path.exists(folder):
-        raise Exception("Folder does not exist")
-
-    filename = sanitize_filename(filename)
-    # Save the data to a text file
-    with open("{}/{}.txt".format(folder, filename), 'w') as file:
-        file.write(data)
-
-    return filename
-
 def sanitize_filename(filename):
     # Remove unwanted characters from the filename
     # unwanted characters include \ / * ? : " < > | , ; ' # & + = [ ] { }
@@ -45,7 +33,19 @@ def url_is_valid(url: str)->bool:
         return False
     return True
 
-def download_images(domain, image_urls, output_directory):
+def save_data_to_text_file(data, filename, folder="datas/files") -> str:
+    # check if folder exists if not return error
+    if not os.path.exists(folder):
+        raise Exception("Folder does not exist")
+
+    filename = sanitize_filename(filename)
+    # Save the data to a text file
+    with open("{}/{}.txt".format(folder, filename), 'w') as file:
+        file.write(data)
+
+    return filename
+
+def download_images(url_base, image_urls, output_directory="data/images"):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
@@ -57,7 +57,7 @@ def download_images(domain, image_urls, output_directory):
 
         # check if url starts with http or https
         if not url.startswith('http'):
-            url = "{}{}".format(domain, url)
+            url = "{}{}".format(url_base, url)
 
         response = requests.get(url)
 
@@ -69,7 +69,6 @@ def download_images(domain, image_urls, output_directory):
             print(f"Image downloaded: {filename}")
         else:
             print(f"Failed to download image from {url}")
-
 
 class Logger:
     def __init__(self, log_file='logs/messages.log'):

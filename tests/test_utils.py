@@ -1,6 +1,7 @@
 import unittest
 import os
-from zack.utils import clean_text, sanitize_filename, save_data_to_text_file
+from zack.core import Scraper
+from zack.utils import clean_text, sanitize_filename, save_data_to_text_file, download_images
 
 class TestUtils(unittest.TestCase):
     def test_clean_text(self):
@@ -23,6 +24,7 @@ class TestUtils(unittest.TestCase):
 
         # remove the file
         os.remove("tmp/{}.txt".format(filename))
+
 
 if __name__ == "__main__":
     unittest.main()
