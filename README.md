@@ -60,6 +60,53 @@ print(data)
 
 For more examples, please refer to the examples directory.
 
+## CLI Usage
+The "zack" web scraper package includes a Command-Line Interface (CLI) that allows you to easily scrape websites and retrieve data from the command line. Follow the instructions below to utilize the CLI.
+
+Prerequisites
+Make sure you have Python 3 installed on your system. Additionally, install the required dependencies by running the following command:
+
+```
+pip install -r requirements.txt
+```
+
+### Usage
+To use the CLI, open your terminal or command prompt and navigate to the project directory. Then, you can run the cli.py script with the desired command-line arguments and options.
+
+The general syntax for running the CLI is as follows:
+
+```
+python cli.py <url> [-o OUTPUT]
+```
+
+Replace <url> with the URL of the website you want to scrape. Optionally, you can provide the -o or --output option followed by the output file path to save the scraped data to a file instead of printing it to the console.
+
+Here's an example of how to use the CLI:
+
+```
+python cli.py https://example.com -o output.txt
+```
+
+This command will scrape the specified URL (https://example.com) and save the scraped data to the file output.txt.
+
+If no output file is specified, the scraped data will be printed to the console.
+
+### Example
+Here's an example of running the CLI without specifying an output file:
+
+```
+python cli.py https://example.com
+```
+
+This command will scrape https://example.com and print the scraped data to the console.
+
+### Help
+To display the available options and get more information about the CLI, you can use the --help option:
+
+```
+python cli.py --help
+```
+
 ## Testing
 The Zack package includes a set of tests to ensure its functionality. To run the tests, use the following command:
 
